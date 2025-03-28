@@ -54,9 +54,11 @@
             <div class="widget recent-posts-widget">
                 <h3>Рекомендуемые статьи</h3>
                 <ul>
-                    <li><a href="#">Заголовок 1</a></li>
-                    <li><a href="#">Заголовок 2</a></li>
-                    <li><a href="#">Заголовок 3</a></li>
+                    {% for post in posts.get_popular_posts %}
+                    <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+                    {% endfor %}
+                    <!--<li><a href="#">Заголовок 2</a></li>
+                    <li><a href="#">Заголовок 3</a></li> -->
                 </ul>
             </div>
 			

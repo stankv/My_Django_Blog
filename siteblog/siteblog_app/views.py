@@ -58,3 +58,8 @@ class GetPost(DetailView):
         self.object.save()
         self.object.refresh_from_db()
         return context
+
+
+def get_popular_posts(cnt=3):
+    posts = Post.objects.order_by('-count_views')[:cnt]
+    return {"posts": posts}
