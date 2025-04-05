@@ -37,8 +37,8 @@
             <!-- Виджет поиска -->
             <div class="widget search-widget">
                 <h3>Поиск по сайту</h3>
-                <form action="#" method="get" class="search-form">
-                    <input type="text" name="search" placeholder="Введите запрос..." class="search-input">
+                <form action="{% url 'search' %}" method="get" class="search-form">
+                    <input type="text" name="s" placeholder="Введите запрос..." class="search-input">
                     <button type="submit" class="search-button">Найти</button>
                 </form>
             </div>
