@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 {% load cache %}
+{% load sidebar %}
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -51,16 +52,7 @@
             </div>
 
             <!-- Виджет последних статей -->
-            <div class="widget recent-posts-widget">
-                <h3>Рекомендуемые статьи</h3>
-                <ul>
-                    {% for post in posts.get_popular_posts %}
-                    <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
-                    {% endfor %}
-                    <!--<li><a href="#">Заголовок 2</a></li>
-                    <li><a href="#">Заголовок 3</a></li> -->
-                </ul>
-            </div>
+            {% get_popular_posts 3 %}
 			
 			<!-- Виджет "Теги" -->
             <div class="widget tags-widget">
