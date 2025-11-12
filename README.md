@@ -1,8 +1,9 @@
 # 🚀 Блог Программиста
-![Python](https://img.shields.io/badge/Python-3.8+-blue?style=flat&logo=python)
+![Python](https://img.shields.io/badge/Python-3.13+-blue?style=flat&logo=python)
 ![Django](https://img.shields.io/badge/Django-5.1.6-green?style=flat&logo=django)
 ![Django ORM](https://img.shields.io/badge/Django_ORM-5.1.6-brightgreen?style=flat&logo=django)
 ![SQLite](https://img.shields.io/badge/SQLite-3.0+-lightgrey?style=flat&logo=sqlite)
+![Highlight.js](https://img.shields.io/badge/Highlight.js-11.7.0-yellow?style=flat)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
@@ -34,6 +35,12 @@
 - Категории и теги для организации контента
 - Счетчик просмотров статей и их дата публикации 
 - SEO-поля (title, мета-описание, ключевые слова)
+
+### Управление контентом
+- Встроенный редактор CKEditor с загрузкой изображений
+- Поддержка HTML-разметки в статьях
+- Автоматическое создание slug из заголовков
+- Гибкая система категорий и тегов
 
 ### Пользовательские теги для публикуемого кода
 
@@ -111,3 +118,5 @@ def hello_world():
     python manage.py migrate                                # применяем миграции
     python manage.py createsuperuser                        # создаем суперпользователя
     python manage.py runserver                              # запускаем сервер
+---
+Разработано на основе [Блог-платформы на Django](https://github.com/stankv/Django_Blog) с дополнительной функциональностью для технического блога.
