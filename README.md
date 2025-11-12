@@ -56,12 +56,6 @@ def hello_world():
 <img width="383" height="76" alt="изображение" src="https://github.com/user-attachments/assets/af8896f5-024f-4169-9d54-496d0c8c9ce9" />
 
 
-```python
-def hello_world():
-    print("Hello, World!")
-```
-
-
 ## 📁 Структура проекта
     siteblog/
     ├── siteblog/                  # Настройки проекта
