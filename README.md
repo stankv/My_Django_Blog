@@ -41,12 +41,14 @@
 - Преобразует <my_code class="language-python">Ваш код</my_code> в готовые блоки с подсветкой, нумерацией строк и кнопкой копирования
 
   Пример использования:
+  
   ```python
   <my_code class="language-python">
 def hello_world():
     print("Hello, World!")
 </my_code>
 ```
+
 Результат
 <img width="1071" height="696" alt="изображение" src="https://github.com/user-attachments/assets/5981d120-2a68-4de2-8c78-ed7c676e0abb" />
 
