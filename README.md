@@ -1,4 +1,8 @@
-# 🚀 Блог Программиста
+<div align="center">
+  
+  # 🚀 Блог Программиста
+</div>
+
 ![Python](https://img.shields.io/badge/Python-3.13+-blue?style=flat&logo=python)
 ![Django](https://img.shields.io/badge/Django-5.1.6-green?style=flat&logo=django)
 ![Django ORM](https://img.shields.io/badge/Django_ORM-5.1.6-brightgreen?style=flat&logo=django)
