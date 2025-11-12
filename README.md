@@ -43,15 +43,23 @@
   Пример использования:
 
   
-  ```html
-  <my_code class="language-python">
+  **Исходный формат в редакторе:**
+```html
+<my_code class="language-python">
 def hello_world():
     print("Hello, World!")
 </my_code>
 ```
 
+**Результат на сайте:**
+```python
+def hello_world():
+    print("Hello, World!")
+```
+
 
 Результат
+
 <img width="1071" height="696" alt="изображение" src="https://github.com/user-attachments/assets/5981d120-2a68-4de2-8c78-ed7c676e0abb" />
 
 
