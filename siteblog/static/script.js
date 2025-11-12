@@ -3,28 +3,45 @@ const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
 const navLinks = document.querySelectorAll('#nav-menu ul li a');
 
-// Добавляем обработчик события для иконки "гамбургер"
+// Обработчик для гамбургер-меню
 hamburger.addEventListener('click', () => {
     navMenu.classList.toggle('active');
 });
 
-/ Пагинация
-const posts = document.querySelectorAll('.post');
-const pageButtons = document.querySelectorAll('.page-button');
+// Функция для установки активного пункта меню
+function setActiveMenuItem() {
+    const currentPath = window.location.pathname;
 
-// Функция для отображения постов на выбранной странице
-function showPage(page) {
-    posts.forEach(post => {
-        if (post.dataset.page === page) {
-            post.style.display = 'block';
-        } else {
-            post.style.display = 'none';
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        const linkPath = link.getAttribute('href');
+        const regex = new RegExp(`^${linkPath}(\/|$)`);
+
+        if (regex.test(currentPath)) {
+            link.classList.add('active');
         }
     });
 
-    // Обновляем активную кнопку
-    pageButtons.forEach(button => {
-        if (button.dataset.page === page) {
+    // Выделение "Главной" для корневой страницы
+    if ((currentPath === '/' || currentPath.endsWith('index.html')) &&
+        !document.querySelector('#nav-menu ul li a.active')) {
+        navLinks.forEach(link => {
+            if (link.textContent.trim() === 'Главная') {
+                link.classList.add('active');
+            }
+        });
+    }
+}
+
+// Функция для установки активной страницы пагинации
+function setActivePage() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentPage = urlParams.get('page') || '1';
+
+    document.querySelectorAll('.page-button').forEach(button => {
+        const buttonPage = button.getAttribute('href').split('page=')[1] || '1';
+
+        if (buttonPage === currentPage) {
             button.classList.add('active');
         } else {
             button.classList.remove('active');
@@ -32,65 +49,45 @@ function showPage(page) {
     });
 }
 
-// Обработчики событий для кнопок пагинации
-pageButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const page = button.dataset.page;
-        showPage(page);
-    });
+// Обработчики событий
+document.addEventListener('DOMContentLoaded', () => {
+    setActiveMenuItem();
+    setActivePage();
 });
 
-// Показываем первую страницу по умолчанию
-showPage('1');
+window.addEventListener('popstate', () => {
+    setActiveMenuItem();
+    setActivePage();
+});
 
-// Выделение активного пункта меню
-function setActiveMenuItem() {
-    const currentPath = window.location.pathname;
-
-    // Удаляем активный класс у всех пунктов
-    navLinks.forEach(link => link.classList.remove('active'));
-
-    // Проверяем каждый пункт меню
-    navLinks.forEach(link => {
-        const linkPath = link.getAttribute('href');
-
-        // Создаем регулярное выражение для точного совпадения
-        const regex = new RegExp(`^${linkPath}(\/|$)`);
-
-        // Если текущий путь соответствует регулярному выражению
-        if (regex.test(currentPath)) {
-            link.classList.add('active');
-        }
-    });
-
-    // Если на корневой странице и нет активного пункта - выделяем "Главная"
-    if ((currentPath === '/' || currentPath.endsWith('index.html')) &&
-        !document.querySelector('#nav-menu ul li a.active')) {
-        navLinks.forEach(link => {
-            if (link.textContent === 'Главная') {
-                link.classList.add('active');
-            }
-        });
+// Закрытие меню при клике вне области
+document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+        navMenu.classList.remove('active');
     }
-}
+});
 
-// Вызываем при загрузке и изменении URL (например, при навигации SPA)
-document.addEventListener('DOMContentLoaded', setActiveMenuItem);
-window.addEventListener('popstate', setActiveMenuItem); // Для SPA-навигации
-
-// Обработчики кликов для пунктов меню
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        // Убираем стандартное поведение для SPA (если нужно)
+// Плавный скролл для внутренних ссылок (опционально)
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
         e.preventDefault();
-
-        // Удаляем активный класс у всех
-        navLinks.forEach(l => l.classList.remove('active'));
-
-        // Добавляем активный класс текущему
-        link.classList.add('active');
-
-        // Здесь можно добавить код для загрузки контента
-        window.location.href = link.href;
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
     });
 });
+
+
+// Yandex.Metrika counter
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(101483941, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });

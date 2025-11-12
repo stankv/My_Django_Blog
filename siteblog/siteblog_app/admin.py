@@ -22,15 +22,17 @@ class TagAdmin(admin.ModelAdmin):
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('id','title', 'slug', 'category', 'created_at', 'count_views', 'get_photo')
+    list_display = ('id','title', 'slug', 'category', 'guide','created_at', 'count_views', 'get_photo')
     list_display_links = ('id', 'title')
-    list_filter = ('category', 'tags')
+    list_editable = ('guide',)  # Поля, которые можно редактировать прямо в списке
+    list_filter = ('category', 'tags', 'guide')
     search_fields = ('title',)
     prepopulated_fields = {'slug': ('title',)}
     form = PostAdminForm
     save_on_top = True
     readonly_fields = ('count_views', 'created_at', 'get_photo')
-    fields = ('title', 'slug', 'category', 'tags', 'content','photo', 'get_photo', 'count_views', 'created_at')
+    fields = ('title', 'slug', 'category', 'guide', 'tags', 'content','photo', 'get_photo',
+              'description', 'keywords', 'count_views', 'created_at')
 
     def get_photo(self, obj):
         if obj.photo:

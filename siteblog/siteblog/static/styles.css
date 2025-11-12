@@ -1,9 +1,12 @@
 /* Цветовой дизайн */
 :root {
-    --primary: #2d4a3d;
-    --accent: #8ab17d;
-    --secondary: #e9c46a;
-    --text: #333;
+    --primary: #1a1a1a;       /* Основной темный цвет */
+    --accent: #2c7be5;        /* Синий акцентный цвет */
+    --secondary: #6c757d;     /* Серый вторичный цвет */
+    --text: #212529;          /* Цвет текста */
+    --light-bg: #f8f9fa;      /* Светлый фон */
+    --white: #ffffff;         /* Белый цвет */
+    --border: #e9ecef;        /* Цвет границ */
 }
 
 /* Общие стили */
@@ -12,8 +15,8 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: var(--light-bg);
+    color: var(--text);
 }
 
 .container {
@@ -27,20 +30,40 @@ header {
     background: var(--primary);
     color: #fff;
     padding: 20px 0;
-	/*position: relative;  */
-	position: sticky; /* Липкое позиционирование */
-    top: 0; /* Прилипает к верхнему краю при скроллинге */
-    z-index: 1000; /* Убедимся, что шапка поверх других элементов */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-header h1 {
+/*header h1 {
     margin: 0;
     text-align: center;
+}  */
+
+#logo {
+    display: block;
+    color: var(--white);
+    font-size: 2em; /* Примерный размер, как у h1 */
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* Как в body */
+    line-height: 1.6; /* Как в body */
+    width: 100%;
+}
+
+#logo:hover {
+    color: var(--white); /* Цвет при наведении */
+    text-decoration: none; /* Убираем подчеркивание */
+    opacity: 0.9;
 }
 
 /* Иконка "гамбургер" */
 .hamburger {
-    display: none; /* По умолчанию скрыта */
+    display: none;
     flex-direction: column;
     cursor: pointer;
     position: absolute;
@@ -65,7 +88,7 @@ header h1 {
 .search-input {
     flex: 1;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border);
     border-radius: 3px 0 0 3px;
     font-size: 1em;
     outline: none;
@@ -73,30 +96,29 @@ header h1 {
 
 .search-button {
     padding: 10px 15px;
-    background-color: #333;
-    color: #fff;
-	background: var(--accent);
+    background: var(--accent);
+    color: var(--white);
     border: none;
     border-radius: 0 3px 3px 0;
     cursor: pointer;
     font-size: 1em;
-	transition: background-color 0.3s, color 0.3s; /* Добавляем плавный переход */
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .search-button:hover {
-    background-color: #555; /* Новый цвет при наведении */
+    background: #1a68d1;
 }
 
 /* Поле поиска для мобильных устройств */
 .mobile-search {
-    display: none; /* По умолчанию скрыто */
+    display: none;
     margin-top: 10px;
 }
 
 .mobile-search .search-input {
     width: calc(100% - 90px);
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border);
     border-radius: 3px 0 0 3px;
     font-size: 1em;
     outline: none;
@@ -105,9 +127,8 @@ header h1 {
 .mobile-search .search-button {
     width: 80px;
     padding: 10px;
-    background-color: #555;
-	background: var(--accent);
-    color: #fff;
+    background: var(--accent);
+    color: var(--white);
     border: none;
     border-radius: 0 3px 3px 0;
     cursor: pointer;
@@ -116,7 +137,7 @@ header h1 {
 }
 
 .mobile-search .search-button:hover {
-    background-color: #777;
+    background: #1a68d1;
 }
 
 /* Навигационное меню */
@@ -134,26 +155,24 @@ nav ul li {
 nav ul li a {
     color: #fff;
     text-decoration: none;
-	display: inline-block; /* Чтобы transform работал корректно */
-    padding: 5px 10px; /* Стандартные отступы */
-    transition: all 0.3s ease; /* Плавный переход */
+    display: inline-block;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
 }
 
 #nav-menu ul li a:hover {
-    color: var(--secondary); /* Цвет текста при наведении */
-    background-color: rgba(233, 196, 106, 0.1); /* Легкий фон при наведении */
-    border-radius: 5px; /* Закругленные углы */
-    transform: scale(1.05); /* Легкое увеличение */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для эффекта "поднятия" */
+    color: var(--accent);
+    background-color: rgba(44, 123, 229, 0.1);
+    border-radius: 5px;
+    transform: scale(1.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
 
 /* Основной контент */
 main {
     display: flex;
     flex-wrap: wrap;
     margin: 20px 0;
-	/*margin-top: 150px; /* Отступ сверху, чтобы контент не перекрывался шапкой */
 }
 
 .posts {
@@ -162,44 +181,57 @@ main {
 }
 
 .post {
-    background: #fff;
-    padding: 20px;
-	margin-top: 20px;
+    background: var(--white);
+    padding: 10px;
+    margin-top: 20px;
     margin-bottom: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.post h2 {
-    margin-top: 0;
+h1 {
+    font-size: 1.7em;  /* Размер шрифта для h1 */
+    margin: 0 0 10px 0;
+    color: var(--primary);
 }
 
+.post h2 {
+    font-size: 1.5em;  /* Размер шрифта для h2 внутри поста */
+    margin: 0 0 10px 0;
+    color: var(--primary);
+}
+
+/*.post h2 {
+    margin-top: 0;
+} */
+
 .post .meta {
-    color: #777;
+    color: var(--secondary);
     font-size: 0.9em;
 }
 
 .post .read-more {
     display: inline-block;
     margin-top: 10px;
-    color: #333;
-	background: var(--accent);
+    color: var(--white);
+    background: var(--accent);
     text-decoration: none;
-    border: 1px solid #333;
+    border: 1px solid var(--accent);
     padding: 5px 10px;
     border-radius: 3px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .post .read-more:hover {
-    background: #333;
-    color: #fff;
+    background: #1a68d1;
+    color: var(--white);
 }
 
 /* Сайдбар */
 .sidebar {
     flex: 1;
-    background: #fff;
-	margin-top: 20px;
+    background: var(--white);
+    margin-top: 20px;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -207,12 +239,11 @@ main {
 
 .widget {
     margin-bottom: 30px;
-    background: #f0f4ef;
+    background: var(--white);
     padding: 25px;
-	border: 1px solid var(--accent);
+    border: 1px solid var(--border);
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: 1px solid #eee;
     transition: transform 0.2s ease;
 }
 
@@ -222,11 +253,11 @@ main {
 
 .widget h3 {
     margin-top: 0;
-	color: #333;
+    color: var(--primary);
     font-size: 1.4em;
     margin-bottom: 15px;
     padding-bottom: 10px;
-    border-bottom: 2px solid #f0f0f0;
+    border-bottom: 2px solid var(--border);
 }
 
 .widget ul {
@@ -239,34 +270,35 @@ main {
 }
 
 .widget ul li a {
-    color: #333;
+    color: var(--text);
     text-decoration: none;
 }
 
 .widget ul li a:hover {
     text-decoration: underline;
+    color: var(--accent);
 }
 
 /* Специфичные стили для разных виджетов */
 .widget.search-widget {
-    background: #f8f9fa;
-    border-color: #e9ecef;
+    background: var(--white);
+    border-color: var(--border);
 }
 
 .widget.about-widget {
-    background: #f1f8ff;
-    border-color: #c8e1ff;
+    background: var(--white);
+    border-color: var(--border);
 }
 
 .widget.recent-posts-widget {
-    background: #fff5f7;
-    border-color: #ffd6e0;
+    background: var(--white);
+    border-color: var(--border);
 }
 
 /* Стили для виджета "Теги" */
 .widget.tags-widget {
-    background: #f8f9fa;
-    border-color: #e9ecef;
+    background: var(--white);
+    border-color: var(--border);
 }
 
 .tags-list {
@@ -278,8 +310,8 @@ main {
 .tag {
     display: inline-block;
     padding: 8px 15px;
-    background: #d4e6d1;
-    color: var(--primary);
+    background: #e9ecef;
+    color: var(--text);
     text-decoration: none;
     border-radius: 20px;
     font-size: 0.9em;
@@ -287,14 +319,14 @@ main {
 }
 
 .tag:hover {
-    background: #333;
-    color: #fff;
+    background: var(--accent);
+    color: var(--white);
 }
 
 /* Подвал */
 footer {
     background: var(--primary);
-    color: #fff;
+    color: var(--white);
     text-align: center;
     padding: 10px 0;
     margin-top: 20px;
@@ -304,7 +336,11 @@ footer {
 @media (max-width: 768px) {
     main {
         flex-direction: column;
-		/*margin-top: 120px; /* Увеличиваем отступ для шапки */
+    }
+
+    #logo {
+        font-size: 1.3em; /* Адаптивный размер */
+        padding: 10px 0 15px 0; /* Отступы для мобильных */
     }
 
     .posts {
@@ -316,16 +352,16 @@ footer {
     }
 
     .hamburger {
-        display: flex; /* Показываем иконку на мобильных устройствах */
-		top: 25px; /* Позиционирование иконки */
+        display: flex;
+        top: 25px;
     }
 
     nav {
-        display: none; /* Скрываем меню по умолчанию на мобильных устройствах */
+        display: none;
         width: 100%;
         background: #444;
         position: absolute;
-        top: 60px; /* Сдвигаем меню ниже */
+        top: 60px;
         left: 0;
     }
 
@@ -335,54 +371,43 @@ footer {
     }
 
     nav.active {
-        display: block; /* Показываем меню при активации */
+        display: block;
     }
-	
-	.widget {
+    
+    .widget {
         margin-bottom: 20px;
         padding: 20px;
     }
-	
-	/* Поле поиска в шапке для мобильных устройств */
+    
     .mobile-search {
         display: flex !important;
         position: relative;
-        /*top: 50px;
-        right: 20px;
-        width: 100%;
-        max-width: 300px;
-        z-index: 1000;
-        background: #444;
-        padding: 1px;
-        border-radius: 5px; */
-		width: 60%; /* Ширина 90% от контейнера */
-        margin: 10px -10px -15px auto; /*10px auto 0; /* Отступ по часовой стрелке */
-        order: 3; /* Перемещаем форму под меню */
+        width: 60%;
+        margin: 10px -10px -15px auto;
+        order: 3;
     }
-	
-	.mobile-search .search-input {
+    
+    .mobile-search .search-input {
         flex: 1;
         padding: 8px;
         font-size: 0.9em;
-        border: none; /* Убираем границу */
+        border: none;
     }
 
     .mobile-search .search-button {
         padding: 8px 15px;
         font-size: 0.9em;
-        background: #555;
+        background: var(--accent);
         border: none;
     }
-	
-	.mobile-search .search-button:hover {
-        background-color: #777;
-		padding: 8px 15px;
+    
+    .mobile-search .search-button:hover {
+        background: #1a68d1;
+        padding: 8px 15px;
         font-size: 0.9em;
-        background: #333;
         border: none;
     }
 
-    /* Скрываем виджет "Поиск по сайту" в сайдбаре */
     .search-widget {
         display: none;
     }
@@ -398,102 +423,328 @@ footer {
 
 .page-button {
     padding: 10px 15px;
-    background: #333;
-    color: #fff;
+    background: var(--accent);
+    color: var(--white);
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    /*transition: background-color 0.3s ease; */
-	transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .page-button:hover {
-    background: #555;
-}
-
-.page-button.active {
-    background: #777;
-}
-
-
-
-
-/* Обновленные стили виджетов */
-.widget {
-    background: rgba(138, 177, 125, 0.1); /* 10% прозрачности от --accent */
-    border: 1px solid var(--accent);
-    border-radius: 10px;
-}
-
-.widget h3 {
-    color: var(--primary);
-    border-bottom: 2px solid rgba(45, 74, 61, 0.2); /* 20% прозрачности --primary */
-}
-
-/* Специфичные стили для разных виджетов */
-.widget.search-widget {
-    background: rgba(233, 196, 106, 0.1); /* 10% --secondary */
-    border-color: var(--secondary);
-}
-
-.widget.about-widget {
-    background: rgba(138, 177, 125, 0.15); /* 15% --accent */
-}
-
-.widget.recent-posts-widget {
-    background: rgba(45, 74, 61, 0.05); /* 5% --primary */
-}
-
-/* Теги */
-/* .tag {
-    background: rgba(233, 196, 106, 0.2); /* 20% --secondary 
-    color: var(--primary);
-    border: 1px solid rgba(233, 196, 106, 0.3);
-}  */
-
-.tag:hover {
-    background: var(--accent);
-    color: var(--primary);
-} 
-
-/* Пагинация */
-.page-button {
-    background: var(--accent);
-    color: var(--primary);
-}
-
-.page-button:hover {
-    background: var(--secondary);
+    background: #1a68d1;
 }
 
 .page-button.active {
     background: var(--primary);
-    color: white;
-}
-
-/* Стили для ссылок главного меню при наведении */
-#nav-menu ul li a:hover {
-    color: var(--secondary); /* Цвет текста при наведении */
-    background-color: rgba(233, 196, 106, 0.1); /* Легкий фон при наведении */
-    border-radius: 5px; /* Закругленные углы */
-    padding: 5px 10px; /* Отступы для лучшего визуального эффекта */
-    transition: all 0.3s ease; /* Плавный переход */
+    color: var(--white);
 }
 
 /* Стили для активного пункта меню */
 #nav-menu ul li a.active {
-    color: var(--secondary); /* Цвет акцентного элемента */
-    font-weight: bold; /* Жирный шрифт */
-    /*border-bottom: 2px solid var(--secondary); /* Подчеркивание */
+    color: var(--accent);
+    font-weight: bold;
 }
 
-/* Дополнительные стили для активного пункта меню при наведении */
 #nav-menu ul li a.active:hover {
-    background-color: rgba(233, 196, 106, 0.2); /* Более насыщенный фон при наведении */
-	transform: scale(1.05); /* Легкое увеличение */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для эффекта "поднятия" */
+    background-color: rgba(44, 123, 229, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.image-text {
-display: flex;
+
+/* Guide specific styles */
+.guide-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px 0;
+}
+
+.guide-link {
+    color: var(--accent);  /* был --primary */
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.guide-link:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .guide-links {
+        padding: 15px 0;
+    }
+
+    .guide-link {
+        font-size: 1em;
+    }
+    
+    .container {
+        width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+    
+    .posts, .post, .post-content {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+.speclinks {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.speclinks:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+/* Стили для блоков с кодом */
+.md-code-block-light {
+    margin: 1em 0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.md-code-block-light pre {
+    margin: 0;
+}
+
+/*------------------------------------------------------------*/
+@media (max-width: 544px) {
+    /* Общие стили */
+    body {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    
+    .container {
+        width: 95%;
+    }
+    
+    /* Шапка */
+    header {
+        padding: 10px 0;
+    }
+    
+    #logo {
+        font-size: 1.2em;
+        padding: 5px 0;
+    }
+    
+    /* Гамбургер-меню */
+    .hamburger {
+        top: 15px;
+        right: 15px;
+    }
+    
+    /* Навигационное меню */
+    nav ul li {
+        margin: 8px 0;
+    }
+    
+    nav ul li a {
+        padding: 4px 8px;
+    }
+    
+    /* Основной контент */
+    main {
+        flex-direction: column;
+    }
+    
+    .posts {
+        margin-right: 0;
+    }
+    
+    .post {
+        padding: 8px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    
+    /* Заголовки */
+    h1 {
+        font-size: 1.3em;
+        margin-bottom: 8px;
+    }
+    
+    .post h2 {
+        font-size: 1.2em;
+        margin-bottom: 8px;
+    }
+    
+    /* Мета-информация */
+    .post .meta {
+        font-size: 0.8em;
+    }
+    
+    /* Кнопка "Читать далее" */
+    .post .read-more {
+        padding: 4px 8px;
+        font-size: 0.9em;
+    }
+    
+    /* Сайдбар */
+    .sidebar {
+        margin-top: 15px;
+        padding: 10px;
+    }
+    
+    /* Виджеты */
+    .widget {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .widget h3 {
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+    
+    /* Форма поиска */
+    .mobile-search {
+        width: 90%;
+        margin: 10px auto;
+    }
+    
+    .mobile-search .search-input {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+    
+    .mobile-search .search-button {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+    
+    /* Кнопки пагинации */
+    .pagination {
+        gap: 5px;
+    }
+    
+    .page-button {
+        padding: 6px 10px;
+        font-size: 0.9em;
+    }
+    
+    /* Теги */
+    .tags-list {
+        gap: 5px;
+    }
+    
+    .tag {
+        padding: 5px 10px;
+        font-size: 0.8em;
+    }
+    
+    /* Подвал */
+    footer {
+        padding: 8px 0;
+    }
+    
+    footer p {
+        font-size: 0.8em;
+    }
+    
+    /* Специальные ссылки */
+    .guide-link {
+        font-size: 0.9em;
+        padding: 6px 0;
+    }
+    
+    .speclinks {
+        font-size: 0.9em;
+    }
+    
+    /* Блоки кода */
+    pre {
+        padding: 8px;
+        margin: 0.8em 0;
+    }
+    
+    /* Кнопка копирования кода */
+    .copy-code {
+        width: 26px;
+        height: 26px;
+    }
+    
+    .copy-code svg {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+/* Добавьте это в секцию медиа-запросов для маленьких экранов */
+@media (max-width: 590px) {
+    .posts {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .post {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .post-content {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .post-content pre {
+        max-width: 100%;
+    }
+	
+	/* Исправляем поведение поиска в шапке */
+    .mobile-search {
+        width: 90%; /* Фиксированная ширина относительно экрана */
+        margin: 8px auto 0; /* Центрируем и задаем отступы */
+        padding: 0;
+        order: 3;
+        position: static; /* Убираем абсолютное позиционирование */
+        transform: none !important;
+    }
+
+    .mobile-search .search-input {
+        width: calc(100% - 80px); /* Фиксированный расчет ширины */
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid var(--border);
+        border-right: none;
+        border-radius: 4px 0 0 4px;
+    }
+
+    .mobile-search .search-button {
+        width: 80px; /* Фиксированная ширина кнопки */
+        padding: 8px;
+        font-size: 14px;
+        border-radius: 0 4px 4px 0;
+        white-space: nowrap;
+    }
+
+    /* Корректируем шапку */
+    header .container {
+        padding-bottom: 10px;
+    }
+
+    /* Логотип и меню */
+    #logo {
+        margin-bottom: 5px;
+    }
+
+    /* Гамбургер-меню */
+    .hamburger {
+        top: 18px;
+        right: 15px;
+    }
 }

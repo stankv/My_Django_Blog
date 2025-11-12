@@ -1,9 +1,9 @@
 <!-- Виджет последних статей -->
 <div class="widget recent-posts-widget">
     <h3>Популярные статьи</h3>
-    <ol>
         {% for post in posts %}
-            <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+            <a class="speclinks" href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+            <br>
+            <hr style="border: none; border-top: 3px dotted #e9ecef;" />
         {% endfor %}
-    </ol>
 </div>

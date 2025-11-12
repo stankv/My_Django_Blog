@@ -1,27 +1,38 @@
 <!DOCTYPE html>
 {% load static %}
+{% load pagination_tags %}
 {% load cache %}
 {% load sidebar %}
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>{% block title %}Блог программиста{% endblock %}</title>
-    <meta name="description" content="Блог о программировании: статьи, руководства и советы по Python, Java, C# и другим языкам. Узнайте больше о разработке и современных технологиях.">
-    <meta name="keywords" content="программирование, Python, Java, C#, разработка, блог, статьи, руководства, советы">
-    <meta name="author" content="Ваше Имя или Название Компании">
+    <meta name="description" content="{% block meta_description %}{% endblock %}">
+    <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+    <meta name="author" content="Станислав Корж">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://ваш-сайт.ru" />
-    <meta property="og:title" content="Блог программиста">
-    <meta property="og:description" content="Блог о программировании: статьи, руководства и советы по Python, Java, C# и другим языкам.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ваш-сайт.ru">
-    <meta property="og:image" content="https://ваш-сайт.ru/images/logo.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Блог программиста">
-    <meta name="twitter:description" content="Блог о программировании: статьи, руководства и советы по Python, Java, C# и другим языкам.">
-    <meta name="twitter:image" content="https://ваш-сайт.ru/images/logo.png">
+
+    <!-- Каноническая ссылка для предотвращения дублей -->
+    {% block canonical %}
+    {% with canonical_url=request.scheme|add:"://"|add:request.get_host|add:request.path %}
+    <link rel="canonical" href="{{ canonical_url }}">
+    {% endwith %}
+    {% endblock %}
+
+    <link rel="icon" href="{% static '/favicon/favicon.ico' %}" />
     <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <!--<link rel="stylesheet" href="{% static '/highlight/atom-one-dark.css' %}"">-->
+    <!-- Подключаем стили Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <!-- Подключаем наши стили для подсветки кода -->
+    <link rel="stylesheet" href="{% static '/for_highlightjs/for_highlightjs.css' %}">
+    <!-- Подключаем сам Highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <!-- Подключаем дополнительный язык (Python) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/python.min.js"></script>
+    <!-- Подключаем плагин нумерации строк -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
 </head>
 <body>
 
@@ -43,13 +54,13 @@
                 </form>
             </div>
 
-            <!-- Виджет "Обо мне" -->
+            <!-- Виджет "Обо мне" 
             <div class="widget about-widget">
                 <h3>Обо мне</h3>
                 <p>Привет! Я программист, и этот блог - мое место для знаний и опыта. Здесь есть материалы...
-				    <a href="#">Подробнее</a>
+				    <a class="speclinks" href="#">Подробнее</a>
 				</p>
-            </div>
+            </div>-->
 
             <!-- Виджет последних статей -->
             {% get_popular_posts 3 %}
@@ -62,10 +73,14 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2023 Блог программиста. Все права защищены.</p>
+            <p>&copy; 2025 Блог программиста. Все права защищены.<br />
+            Копирование и публикация материалов сайта разрешены только с указанием ссылки на источник.</p>
         </div>
     </footer>
 
     <script src="{% static 'script.js' %}"></script>
+    <!--<script src="{% static '/highlight/highlight.min.js' %}"></script>
+    <script>hljs.highlightAll();</script> -->
+    <script src="{% static '/for_highlightjs/for_highlightjs.js' %}"></script>
 </body>
 </html>

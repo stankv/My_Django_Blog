@@ -1,11 +1,27 @@
 {% extends "base.html" %}
 {% load static %}
+{% load pagination_tags %}
 
-{% block title %}Поиск :: {{ block.super }} {% endblock %}
+{% block title %}
+    {% with title_text=block.super|add:": Результаты поиска \""|add:srch|add:"\"" %}
+        {{ title_text|add_page_suffix:request }}
+    {% endwith %}
+{% endblock %}
+
+{% block meta_description %}
+    {% with desc="Результаты поиска по запросу: "|add:srch %}
+        {{ desc|add_page_suffix:request }}
+    {% endwith %}
+{% endblock %}
+
+{% block meta_keywords %}поиск, {{ srch }}{% endblock %}
 
 {% block content %}
 <section class="posts">
             <!-- Посты -->
+            <article class="post">
+            <h1>Результаты поиска "{{ srch }}":</h1>
+            </article>
             {% for post in posts %}
                 <article class="post" data-page="{{ forloop.counter|divisibleby:3|add:1 }}">
                   <h2>{{ post.title }}</h2>

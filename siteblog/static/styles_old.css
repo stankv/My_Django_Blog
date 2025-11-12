@@ -704,47 +704,4 @@ footer {
     .post-content pre {
         max-width: 100%;
     }
-	
-	/* Исправляем поведение поиска в шапке */
-    .mobile-search {
-        width: 90%; /* Фиксированная ширина относительно экрана */
-        margin: 8px auto 0; /* Центрируем и задаем отступы */
-        padding: 0;
-        order: 3;
-        position: static; /* Убираем абсолютное позиционирование */
-        transform: none !important;
-    }
-
-    .mobile-search .search-input {
-        width: calc(100% - 80px); /* Фиксированный расчет ширины */
-        padding: 8px;
-        font-size: 14px;
-        border: 1px solid var(--border);
-        border-right: none;
-        border-radius: 4px 0 0 4px;
-    }
-
-    .mobile-search .search-button {
-        width: 80px; /* Фиксированная ширина кнопки */
-        padding: 8px;
-        font-size: 14px;
-        border-radius: 0 4px 4px 0;
-        white-space: nowrap;
-    }
-
-    /* Корректируем шапку */
-    header .container {
-        padding-bottom: 10px;
-    }
-
-    /* Логотип и меню */
-    #logo {
-        margin-bottom: 5px;
-    }
-
-    /* Гамбургер-меню */
-    .hamburger {
-        top: 18px;
-        right: 15px;
-    }
 }

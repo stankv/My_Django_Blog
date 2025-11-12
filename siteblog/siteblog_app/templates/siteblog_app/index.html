@@ -1,42 +1,45 @@
 {% extends "base.html" %}
 {% load static %}
+{% load pagination_tags %}
 
-{% block title %}{{ title }} :: {{ block.super }} {% endblock %}
+{% block title %} {{ block.super }}: {{ title|add_page_suffix:request }} {% endblock %}
+
+{% block meta_description %}{{ meta_description|add_page_suffix:request }}{% endblock %}
+
+{% block meta_keywords %}{{ meta_keywords }}{% endblock %}
 
 {% block content %}
-<section class="posts">
-            <!-- Посты -->
-            {% for post in posts %}
-                <article class="post" data-page="{{ forloop.counter|divisibleby:3|add:1 }}">
-                  <h2>{{ post.title }}</h2>
-                  <p class="meta"><span>Опубликовано: {{ post.created_at|date:"d.m.Y" }}</span></p>
-                  <p>{{ post.content|truncatewords_html:20|safe }}</p>
-                  <a href="{{ post.get_absolute_url }}" class="read-more">Читать далее</a>
-                </article>
-            {% endfor %}
+    <section class="posts">
+        <!-- Посты -->
+        <article class="post">
+        <h1>{{ title }}</h1>
+        </article>
+        {% for post in posts %}
+            <article class="post" data-page="{{ forloop.counter|divisibleby:3|add:1 }}">
+              <h2>{{ post.title }}</h2>
+              <p class="meta"><span>Опубликовано: {{ post.created_at|date:"d.m.Y" }}</span></p>
+              <p>{{ post.content|truncatewords_html:30|safe }}</p>
+              <a href="{{ post.get_absolute_url }}" class="read-more">Читать далее</a>
+            </article>
+        {% endfor %}
 
-            <!-- Пагинация -->
-            {% if page_obj.has_other_pages %}
-            <div class="pagination">
-                {% if page_obj.has_previous %}
-                    <a class="page-button" data-page="{{ p }}" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">Назад</a>
-                {% endif %}
-                {% for p in page_obj.paginator.page_range %}
-                    {% if page_obj.number == p %}
-                        <a class="page-button active" data-page="{{ p }}" href="?page={{ p }}">{{ p }}</a>
-                    {% elif p > page_obj.number|add:-3 and p < page_obj.number|add:3 %}
-                        <a class="page-button" data-page="{{ p }}" href="?page={{ p }}">{{ p }}</a>
-                    {% endif %}
-                {% endfor %}
-                {% if page_obj.has_next %}
-                    <a class="page-button" data-page="{{ p }}" href="?page={{ page_obj.next_page_number }}">Вперед</a>
-                {% endif %}
-            <!--<div class="pagination">
-                <button class="page-button" data-page="1">1</button>
-                <button class="page-button" data-page="2">2</button>
-                <button class="page-button" data-page="3">3</button> -->
-            <!-- Добавьте больше кнопок по мере необходимости -->
-            </div>
+        <!-- Пагинация -->
+        {% if page_obj.has_other_pages %}
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+                <a class="page-button" data-page="{{ p }}" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">Назад</a>
             {% endif %}
-</section>
+            {% for p in page_obj.paginator.page_range %}
+                {% if page_obj.number == p %}
+                    <a class="page-button active" data-page="{{ p }}" href="?page={{ p }}">{{ p }}</a>
+                {% elif p > page_obj.number|add:-3 and p < page_obj.number|add:3 %}
+                    <a class="page-button" data-page="{{ p }}" href="?page={{ p }}">{{ p }}</a>
+                {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <a class="page-button" data-page="{{ p }}" href="?page={{ page_obj.next_page_number }}">Вперед</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </section>
 {% endblock %}

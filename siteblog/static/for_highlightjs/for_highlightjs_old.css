@@ -1,0 +1,156 @@
+/* Основные стили для блока кода */
+pre {
+    background-color: #282c34;
+    padding: 12px;
+    border-radius: 5px;
+    position: relative;
+    margin: 1em 0;
+    overflow: auto; /* Изменено с hidden на auto */
+    max-width: 100%; /* Ограничиваем максимальную ширину */
+    box-sizing: border-box; /* Учитываем padding в общей ширине */
+}
+
+/* Контейнер для кода с прокруткой */
+pre code {
+    display: block;
+    overflow-x: auto;
+    white-space: pre;
+    word-wrap: normal;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    min-width: min-content; /* Добавлено для правильной работы прокрутки */
+}
+
+/* Стили для таблицы с номерами строк */
+.hljs-ln {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+/* Ячейки с номерами строк */
+.hljs-ln-numbers {
+    text-align: right;
+    color: #6c757d;
+    vertical-align: top;
+    padding: 0 15px 0 5px !important;
+    border-right: 1px solid #495057;
+    position: relative;
+}
+
+/* Ячейки с кодом */
+.hljs-ln-code {
+    padding-left: 15px !important;
+    vertical-align: top;
+}
+
+/* Стили для кнопки копирования */
+.copy-code {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 1;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.copy-code:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.copy-code svg {
+    width: 16px;
+    height: 16px;
+    fill: #abb2bf;
+    transition: fill 0.2s;
+}
+
+.copy-code:hover svg {
+    fill: #ffffff;
+}
+
+.copy-code.copied svg {
+    fill: #98c379;
+}
+
+/* Тултип */
+.copy-code::after {
+    content: "Копировать";
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.copy-code:hover::after {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    pre {
+        padding: 8px; /* Уменьшаем отступы на мобильных */
+        font-size: 0.9em; /* Уменьшаем размер шрифта */
+    }
+    
+    .copy-code {
+        width: 28px; /* Уменьшаем размер кнопки копирования */
+        height: 28px;
+        right: 5px;
+        top: 5px;
+    }
+    
+    .copy-code svg {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .copy-code::after {
+        font-size: 10px;
+        top: -25px;
+    }
+}
+
+/* Добавьте это в конец файла */
+@media (max-width: 590px) {
+    pre {
+        max-width: 100%;
+        overflow-x: auto;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+        font-size: 0.85em;
+        padding: 8px;
+        margin: 0.8em 0;
+    }
+
+    pre code {
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+
+    .hljs-ln-numbers {
+        padding: 0 8px 0 5px !important;
+    }
+
+    .hljs-ln-code {
+        padding-left: 10px !important;
+    }
+}
