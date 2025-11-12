@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load code_tags %}
 
 {% block title %}{{ block.super }}: {{ post.title }} {% endblock %}
 
@@ -24,7 +25,7 @@
         {% endif %}
         <span>Просмотров: {{ post.count_views }}</span>
       </div>
-      <p>{{ post.content|safe }}</p>
+      {{ post.content|parse_custom_code_blocks|safe }}
     </article>
 </section>
 {% endblock %}
