@@ -42,7 +42,7 @@
 
   Пример использования:
   
-  ```python
+  ```html
   <my_code class="language-python">
 def hello_world():
     print("Hello, World!")
