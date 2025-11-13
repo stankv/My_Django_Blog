@@ -1,6 +1,6 @@
 <div align="center">
   
-  # 🚀 Блог Программиста
+  # 💻 Блог Программиста
 </div>
 
 ![Python](https://img.shields.io/badge/Python-3.13+-blue?style=flat&logo=python)
